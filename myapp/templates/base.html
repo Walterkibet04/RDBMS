@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RDBMS</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background: #eee; }
+        a { margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>Mini RDBMS Demo</h1>
+
+<nav>
+    <a href="/">Users</a>
+    <a href="/orders/">Orders</a>
+    <a href="/join/">User Orders (JOIN)</a>
+    <a href="/join-left/">LEFT JOIN</a>
+</nav>
+
+<hr>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>

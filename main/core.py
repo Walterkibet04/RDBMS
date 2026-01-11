@@ -74,13 +74,24 @@ class Database:
         return self.tables[name]
 
 
-def inner_join(left, right, left_key, right_key):
+def inner_join(left_table, right_table, left_key, right_key):
     result = []
-    for l in left.rows:
-        for r in right.rows:
-            if l[left_key] == r[right_key]:
-                result.append({**l, **r})
+
+    right_index = {}
+    for row in right_table.rows:
+        right_index.setdefault(row[right_key], []).append(row)
+
+    for lrow in left_table.rows:
+        matches = right_index.get(lrow[left_key])
+        if matches:
+            for rrow in matches:
+                # Prefix keys to avoid collision
+                merged = {f"user_{k}": v for k, v in lrow.items()}
+                merged.update({f"order_{k}": v for k, v in rrow.items()})
+                result.append(merged)
+
     return result
+
 
 def left_join(left_table, right_table, left_key, right_key):
     result = []
@@ -91,32 +102,21 @@ def left_join(left_table, right_table, left_key, right_key):
 
     for lrow in left_table.rows:
         matches = right_index.get(lrow[left_key])
-
         if matches:
             for rrow in matches:
-                result.append({**lrow, **rrow})
+                merged = {f"user_{k}": v for k, v in lrow.items()}
+                merged.update({f"order_{k}": v for k, v in rrow.items()})
+                result.append(merged)
         else:
-            # no match → NULLs for right table
-            nulls = {col: None for col in right_table.columns}
-            result.append({**lrow, **nulls})
+            nulls = {k: None for k in right_table.columns}
+            merged = {f"user_{k}": v for k, v in lrow.items()}
+            merged.update({f"order_{k}": v for k, v in nulls.items()})
+            result.append(merged)
 
     return result
+
 
 # GLOBAL DATABASE INSTANCE
 db = Database()
 
-# db.create_table(
-#     "users",
-#     columns=["id", "name"],
-#     types={"id": "INT", "name": "TEXT"},
-#     pk="id",
-#     unique=["name"]
-# )
-
-# db.create_table(
-#     "orders",
-#     columns=["id", "user_id", "product"],
-#     types={"id": "INT", "user_id": "INT", "product": "TEXT"},
-#     pk="id"
-# )
 

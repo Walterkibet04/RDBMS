@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Create Order</h2>
+
+<form method="post">
+    {% csrf_token %}
+    Order ID: <input name="id"><br><br>
+
+    User: 
+    <select name="user_id">
+        {% for u in users %}
+            <option value="{{ u.id }}">{{ u.name }} (ID: {{ u.id }})</option>
+        {% endfor %}
+    </select><br><br>
+
+    Amount: <input name="amount"><br><br>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

@@ -1,14 +1,32 @@
-<h1>Users</h1>
-<a href="/create/">Add User</a>
+{% extends "base.html" %}
 
-<ul>
+{% block content %}
+<h2>Users</h2>
+
+<a href="/users/create/">Create User</a>
+<br><br>
+<form method="get" action="">
+    <input type="text" name="q" placeholder="Search by User ID or Name" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+<br>
+
+<table>
+<tr>
+    <th>User ID</th>
+    <th>Name</th>
+    <th>Actions</th>
+</tr>
+
 {% for u in users %}
-  <li>
-    {{ u.name }}
-    <a href="/update/{{ u.id }}/">Edit</a>
-    <a href="/delete/{{ u.id }}/">Delete</a>
-  </li>
+<tr>
+    <td>{{ u.id }}</td>
+    <td>{{ u.name }}</td>
+    <td>
+        <a href="/users/update/{{ u.id }}/">Edit</a>
+        <a href="/users/delete/{{ u.id }}/">Delete</a>
+    </td>
+</tr>
 {% endfor %}
-</ul>
-
-<a href="/orders/">View Orders</a>
+</table>
+{% endblock %}

@@ -1,6 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Create User</h2>
+
 <form method="post">
-  {% csrf_token %}
-  <input name="id" placeholder="ID"><br>
-  <input name="name" placeholder="Name"><br>
-  <button>Create</button>
+    {% csrf_token %}
+    User ID: <input name="id"><br><br>
+    Name: <input name="name"><br><br>
+    <button type="submit">Save</button>
 </form>
+{% endblock %}

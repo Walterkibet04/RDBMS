@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Orders</h2>
+
+<a href="/orders/create/">Create Order</a>
+<br><br>
+<form method="get" action="">
+    <input type="text" name="q" placeholder="Search by Order ID, User ID, or Amount" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+<br>
+
+<table>
+<tr>
+    <th>Order ID</th>
+    <th>User ID</th>
+    <th>Amount</th>
+</tr>
+
+{% for o in orders %}
+<tr>
+    <td>{{ o.id }}</td>
+    <td>{{ o.user_id }}</td>
+    <td>{{ o.amount }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
