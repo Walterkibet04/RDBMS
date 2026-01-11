@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>User Orders (JOIN)</h2>
+<h2>User Orders (INNER JOIN)</h2>
+
+<form method="get">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search by User ID, Name, Order ID, or Amount"
+        value="{{ query }}"
+    >
+    <button type="submit">Search</button>
+</form>
+
+<br><br>
 
 <table>
 <tr>
@@ -13,10 +25,10 @@
 
 {% for r in rows %}
 <tr>
-    <td>{{ r.id }}</td>
-    <td>{{ r.name }}</td>
+    <td>{{ r.user_id }}</td>
+    <td>{{ r.user_name }}</td>
     <td>{{ r.order_id }}</td>
-    <td>{{ r.amount }}</td>
+    <td>{{ r.order_amount }}</td>
 </tr>
 {% endfor %}
 </table>

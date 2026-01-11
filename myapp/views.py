@@ -62,13 +62,30 @@ def delete_user(request, user_id):
 
 
 def user_orders(request):
-    data = inner_join(
+    rows = inner_join(
         users_table(),
         orders_table(),
         "id",
         "user_id"
     )
-    return render(request, "user_orders.html", {"rows": data})
+
+    q = request.GET.get("q", "").lower()
+
+    if q:
+        rows = [
+            r for r in rows
+            if q in str(r["user_id"]).lower()
+            or q in r["user_name"].lower()
+            or q in str(r["order_id"]).lower()
+            or q in str(r["order_amount"]).lower()
+        ]
+
+    return render(
+        request,
+        "user_orders.html",
+        {"rows": rows, "query": q}
+    )
+
 
 def list_orders(request):
     table = orders_table()
@@ -106,11 +123,26 @@ def create_order(request):
 
 
 def user_orders_left(request):
-    """Show all users with their orders (LEFT JOIN)"""
-    data = left_join(
+    rows = left_join(
         users_table(),
         orders_table(),
-        "id",       # left table key
-        "user_id"   # right table key
+        "id",
+        "user_id"
     )
-    return render(request, "user_orders_left.html", {"rows": data})
+
+    q = request.GET.get("q", "").lower()
+
+    if q:
+        rows = [
+            r for r in rows
+            if q in str(r["user_id"]).lower()
+            or q in r["user_name"].lower()
+            or q in str(r["order_id"]).lower()
+            or q in str(r["order_amount"]).lower()
+        ]
+
+    return render(
+        request,
+        "user_orders_left.html",
+        {"rows": rows, "query": q}
+    )

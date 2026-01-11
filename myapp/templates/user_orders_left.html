@@ -3,22 +3,34 @@
 {% block content %}
 <h2>User Orders (LEFT JOIN)</h2>
 
+<form method="get">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search by User ID, Name, Order ID, or Amount"
+        value="{{ query }}"
+    >
+    <button type="submit">Search</button>
+</form>
+
+<br>
+
 <table>
 <tr>
     <th>User ID</th>
     <th>Name</th>
     <th>Order ID</th>
-    <th>Amount</th>
+    <th>Order Amount</th>
 </tr>
 
 {% for r in rows %}
 <tr>
-    <td>{{ r.user_id }}</td>      
-    <td>{{ r.user_name }}</td>     
-    <td>{{ r.order_id }}</td>      
-    <td>{{ r.order_amount }}</td>  
+    <td>{{ r.user_id }}</td>
+    <td>{{ r.user_name }}</td>
+    <td>{{ r.order_id }}</td>
+    <td>{{ r.order_amount }}</td>
 </tr>
-
 {% endfor %}
 </table>
+
 {% endblock %}
