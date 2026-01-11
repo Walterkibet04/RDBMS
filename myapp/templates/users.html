@@ -1,0 +1,14 @@
+<h1>Users</h1>
+<a href="/create/">Add User</a>
+
+<ul>
+{% for u in users %}
+  <li>
+    {{ u.name }}
+    <a href="/update/{{ u.id }}/">Edit</a>
+    <a href="/delete/{{ u.id }}/">Delete</a>
+  </li>
+{% endfor %}
+</ul>
+
+<a href="/orders/">View Orders</a>

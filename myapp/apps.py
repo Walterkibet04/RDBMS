@@ -1,0 +1,9 @@
+from django.apps import AppConfig
+
+
+class MyappConfig(AppConfig):
+    name = 'myapp'
+    
+    def ready(self):
+        from main.bootstrap import init_schema
+        init_schema()
