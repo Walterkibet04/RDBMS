@@ -87,7 +87,7 @@ The Django app demonstrates:
 
 If data is modified via the REPL, restart the server to reflect changes.
 
-###**Persistence**
+**Persistence**
 
 All data is stored in db.json.
 
