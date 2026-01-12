@@ -114,6 +114,24 @@ class Table:
         if not row:
             raise Exception("Row not found")
 
+        # ---------- CASCADING DELETE ----------
+        # If deleting a user, delete their orders
+        if self.name == "users" and self.database:
+            orders = self.database.tables.get("orders")
+            if orders:
+                orders.rows = [
+                    r for r in orders.rows if r["user_id"] != row["id"]
+                ]
+
+                # rebuild order indexes
+                for col in orders.indexes:
+                    orders.indexes[col].clear()
+                    for r in orders.rows:
+                        orders.indexes[col][r[col]] = r
+                        
+
+        # ---------- DELETE THIS ROW ----------
+
         self.rows.remove(row)
 
         for col in self.indexes:
