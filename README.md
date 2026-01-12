@@ -5,16 +5,16 @@ It supports basic SQL-like commands, an interactive REPL, disk persistence, and 
 The project is designed to illustrate core database concepts without using an existing database engine or ORM.
 
 ## **Features**
-Tables & schema	✅
-CRUD operations	✅
-Primary keys	✅
-Unique constraints	✅
-Indexes	✅
-JOINs	✅
-SQL-like interface	✅
-Interactive REPL	✅
-Disk persistence	✅
-Web app demonstration	✅
+* Tables & schema	✅
+* CRUD operations	✅
+* Primary keys	✅
+* Unique constraints	✅
+* Indexes	✅
+* JOINs	✅
+* SQL-like interface	✅
+* Interactive REPL	✅
+* Disk persistence	✅
+* Web app demonstration	✅
 
 
 ## **Architecture**
