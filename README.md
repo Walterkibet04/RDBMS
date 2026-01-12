@@ -1,10 +1,10 @@
-### **Overview**
+# **Overview**
 
 MiniRDBMS is a relational database management system implemented in Python.
 It supports basic SQL-like commands, an interactive REPL, disk persistence, and a Django web UI to demonstrate CRUD operations and joins.
 The project is designed to illustrate core database concepts without using an existing database engine or ORM.
 
-#### **Features**
+## **Features**
 Tables & schema	✅
 CRUD operations	✅
 Primary keys	✅
@@ -17,7 +17,7 @@ Disk persistence	✅
 Web app demonstration	✅
 
 
-##### **Architecture**
+## **Architecture**
 
 RDBMS/
 
@@ -42,16 +42,16 @@ RDBMS/
 
 └── manage.py
 
-###### **Core Components**
+## **Core Components**
 
-###### Database Engine (core.py)
+### Database Engine (core.py)
 
 * Manages tables and persistence
 * Enforces schema, types, primary keys, and uniqueness
 * Implements cascading deletes
 * Stores data in memory and writes to db.json
 
-###### **SQL Interface (sql.py)**
+### **SQL Interface (sql.py)**
 Supports commands such as:
 
 *CREATE TABLE users (id INT PRIMARY KEY, name TEXT);*
@@ -66,7 +66,7 @@ Supports commands such as:
 
 *SELECT \* FROM users JOIN orders ON users.id = orders.user\_id*
 
-##### **REPL**
+## **REPL**
 
 Run:
 
@@ -74,7 +74,7 @@ Run:
 
 Provides an interactive SQL-like interface backed by the same database used by the UI.
 
-# **Django Web App**
+## **Django Web App**
 
 The Django app demonstrates:
 
@@ -87,7 +87,7 @@ The Django app demonstrates:
 
 If data is modified via the REPL, restart the server to reflect changes.
 
-**Persistence**
+###**Persistence**
 
 All data is stored in db.json.
 
