@@ -1,21 +1,10 @@
 from main.core import db
 
 
+
 def init_schema():
     if "users" not in db.tables:
-        db.create_table(
-            "users",
-            ["id", "name"],
-            {"id": "INT", "name": "TEXT"},
-            "id",          # primary key (positional)
-            []             # unique keys
-        )
-
+        db.create_table("users", ["id","name"], {"id":"INT","name":"TEXT"}, pk="id")
     if "orders" not in db.tables:
-        db.create_table(
-            "orders",
-            ["id", "user_id", "amount"],
-            {"id": "INT", "user_id": "INT", "amount": "INT"},
-            "id",          # primary key
-            []
-        )
+        db.create_table("orders", ["id","user_id","amount"], {"id":"INT","user_id":"INT","amount":"INT"}, pk="id")
+

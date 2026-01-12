@@ -70,3 +70,6 @@ HOW TO EXPLAIN THIS IN ONE SENTENCE
 
 I implemented a SQL-like in-memory relational database engine with schema definition, indexing, joins, filtering, and multiple interfaces including a REPL, REST API, and Django UI — without using Django ORM.
 
+
+“I built a small relational database from scratch with table definitions, primary and unique constraints, hash-based indexing, CRUD operations, and inner joins.
+It exposes a SQL-like interface with a REPL, and I integrated it into a Django app to prove it works in a real web environment without using Django ORM.”

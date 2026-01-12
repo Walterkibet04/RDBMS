@@ -1,0 +1,54 @@
+{
+  "users": {
+    "columns": [
+      "id",
+      "name"
+    ],
+    "types": {
+      "id": "INT",
+      "name": "TEXT"
+    },
+    "primary_key": "id",
+    "unique": [],
+    "rows": [
+      {
+        "id": 1,
+        "name": "Walter"
+      },
+      {
+        "id": 3,
+        "name": "Bob"
+      },
+      {
+        "id": 4,
+        "name": "john"
+      }
+    ]
+  },
+  "orders": {
+    "columns": [
+      "id",
+      "user_id",
+      "amount"
+    ],
+    "types": {
+      "id": "INT",
+      "user_id": "INT",
+      "amount": "INT"
+    },
+    "primary_key": "id",
+    "unique": [],
+    "rows": [
+      {
+        "id": 1,
+        "user_id": 1,
+        "amount": 500
+      },
+      {
+        "id": 2,
+        "user_id": 2,
+        "amount": 1200
+      }
+    ]
+  }
+}

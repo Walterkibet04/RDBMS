@@ -76,7 +76,21 @@ def _insert(query):
 def _select(query):
     tokens = query.split()
 
+    # -------------------------------
+    # SELECT * FROM table
+    # -------------------------------
+    if (
+        len(tokens) == 4
+        and tokens[0] == "SELECT"
+        and tokens[1] == "*"
+        and tokens[2] == "FROM"
+    ):
+        table = db.table(tokens[3])
+        return table.all()
+
+    # -------------------------------
     # SELECT * FROM table WHERE col=value
+    # -------------------------------
     if "WHERE" in tokens and "JOIN" not in tokens:
         table = db.table(tokens[3])
         where_index = tokens.index("WHERE")
@@ -85,7 +99,9 @@ def _select(query):
         val = _parse(val)
         return [row for row in table.rows if row[col] == val]
 
+    # -------------------------------
     # SELECT * FROM A LEFT JOIN B ON A.x = B.y
+    # -------------------------------
     if "LEFT" in tokens and "JOIN" in tokens:
         left = tokens[3]
         right = tokens[6]
@@ -99,7 +115,9 @@ def _select(query):
             right_key
         )
 
+    # -------------------------------
     # SELECT * FROM A JOIN B ON A.x = B.y
+    # -------------------------------
     if "JOIN" in tokens:
         left = tokens[3]
         right = tokens[5]
@@ -114,6 +132,7 @@ def _select(query):
         )
 
     raise Exception("Unsupported SELECT query")
+
 
 
 
