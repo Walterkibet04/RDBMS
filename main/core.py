@@ -215,7 +215,9 @@ class Database:
     def table(self, name):
         return self.tables[name]
 
-
+    def reload(self):
+        self.tables = {}
+        self.load()
 # -------------------------------
 # JOIN FUNCTIONS
 # -------------------------------

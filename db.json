@@ -20,8 +20,8 @@
         "name": "Bob"
       },
       {
-        "id": 4,
-        "name": "john"
+        "id": 2,
+        "name": "Alice hello"
       }
     ]
   },
@@ -48,6 +48,11 @@
         "id": 2,
         "user_id": 2,
         "amount": 1200
+      },
+      {
+        "id": 3,
+        "user_id": 3,
+        "amount": 300
       }
     ]
   }

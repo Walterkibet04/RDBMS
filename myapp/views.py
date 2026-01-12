@@ -5,16 +5,19 @@ from main.core import db, inner_join, left_join
 # -------- Lazy table access (FIX) --------
 
 def users_table():
+    db.reload()
     return db.table("users")
 
 
 def orders_table():
+    db.reload()
     return db.table("orders")
 
 
 # -------- Views --------
 
 def list_users(request):
+    db.reload()
     table = users_table()
     query = request.GET.get("q", "")
     results = table.all()
@@ -34,6 +37,7 @@ def list_users(request):
 
 
 def create_user(request):
+    db.reload()
     if request.method == "POST":
         users_table().insert({
             "id": int(request.POST["id"]),
@@ -44,6 +48,7 @@ def create_user(request):
 
 
 def update_user(request, user_id):
+    db.reload()
     if request.method == "POST":
         users_table().update(
             "id",
@@ -57,11 +62,13 @@ def update_user(request, user_id):
 
 
 def delete_user(request, user_id):
+    db.reload()
     users_table().delete("id", int(user_id))
     return redirect("/")
 
 
 def user_orders(request):
+    db.reload()
     rows = inner_join(
         users_table(),
         orders_table(),
@@ -88,6 +95,7 @@ def user_orders(request):
 
 
 def list_orders(request):
+    db.reload()
     table = orders_table()
     query = request.GET.get("q", "")
     results = table.all()
@@ -109,6 +117,7 @@ def list_orders(request):
 
 
 def create_order(request):
+    db.reload()
     users = users_table().all()  # get all users
 
     if request.method == "POST":
@@ -123,6 +132,7 @@ def create_order(request):
 
 
 def user_orders_left(request):
+    db.reload()
     rows = left_join(
         users_table(),
         orders_table(),
